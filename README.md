@@ -20,4 +20,3 @@ The list of implemented endpoints are:
 ### Next Steps
 - Add a nice API Home and 404 page template in EJS.
 - Handle the window location hash appended to the callbacks for Google and Facebook login.
-- Create a bash script to initialize a new npm project using this project as a template.
