@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Open Sans", Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* style the container */
+      .container {
+        position: relative;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 3px 0 5px 0;
+      }
+
+      /* Two-column layout */
+      .col {
+        text-align: center;
+        width: 50%;
+        margin: auto;
+        padding: 0 50px;
+        margin-top: 6px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* vertical line */
+      .vl {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        border: 2px solid #ddd;
+        height: 175px;
+      }
+
+      /* text inside the vertical line */
+      .vl-innertext {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        padding: 8px 10px;
+      }
+
+      /* hide some text on medium and large screens */
+      .hide-md-lg {
+        display: none;
+      }
+
+      /* bottom container */
+      .bottom-container {
+        text-align: center;
+        background-color: #666;
+        border-radius: 0px 0px 4px 4px;
+      }
+
+      /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 650px) {
+        .col {
+          width: 100%;
+          margin-top: 0;
+        }
+        /* hide the vertical line */
+        .vl {
+          display: none;
+        }
+        /* show the hidden text on small screens */
+        .hide-md-lg {
+          display: block;
+          text-align: center;
+        }
+      }
+      .title {
+        margin-bottom: 0;
+      }
+      .link {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Express Backend Authentication Starter</h1>
+    <h5 class="title">Home</h5>
+    <div class="container">
+      <div class="row">
+        <p>http://localhost:5000/api/</p>
+      </div>
+    </div>
+    <h5 class="title">Endpoints</h5>
+    <div class="container">
+      <div class="row">
+        <p class="link">API Home: </p><a class="link" href="http://localhost:5000/api">http://localhost:5000/api</a>
+      </div>
+      <div class="row">
+        <p class="link"> All Users: </p><a class="link" href="http://localhost:5000/api/users">http://localhost:5000/api/users</a>
+      </div>
+      <div class="row">
+        <p class="link">API Login: </p><a class="link" href="http://localhost:5000/api/auth">http://localhost:5000/api/auth</a>
+      </div>
+      <div class="row">
+        <p class="link">Facebook Login Link: </p><a class="link" href="http://localhost:5000/api/auth/facebook">http://localhost:5000/api/auth/facebook</a>
+      </div>
+      <div class="row">
+        <p class="link">Twitter Login Link: </p><a class="link" href="http://localhost:5000/api/auth/twitter">http://localhost:5000/api/auth/twitter</a>
+      </div>
+      <div class="row">
+        <p class="link">Google Login Link: </p><a class="link" href="http://localhost:5000/api/auth/google">http://localhost:5000/api/auth/google</a>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

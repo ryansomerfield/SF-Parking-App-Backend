@@ -12,12 +12,7 @@ router.get("/*", (req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  res.json({
-    endpoints: {
-      homePage: "/",
-      allUsers: "/users",
-    },
-  });
+  res.render("home");
 });
 
 router.get("/users", async (req, res) => {
