@@ -55,10 +55,10 @@ app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/", require("./routes/index"));
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(404);
-  const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
-  next(error);
+  res.render("404");
+  // const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
 });
 
 app.use((err, req, res, next) => {
