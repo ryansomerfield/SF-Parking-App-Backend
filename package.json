@@ -18,6 +18,7 @@
     "express-session": "^1.17.1",
     "helmet": "^3.23.3",
     "mongoose": "^5.9.22",
+    "mongoose-geojson-schema": "^2.1.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
