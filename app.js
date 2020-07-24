@@ -23,12 +23,13 @@ app.use(morgan("dev"));
 //CORS
 let corsOption = {
   origin: true,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   exposedHeaders: ["x-auth-token"],
 };
 app.use(cors(corsOption));
-
+app.options("*", cors()); // handle pre-flight
 //Passport Sessions Middleware
 app.use(
   session({

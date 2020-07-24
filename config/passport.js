@@ -10,6 +10,7 @@ module.exports = function (passport) {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK_URL,
+        // proxy: true,
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
@@ -45,6 +46,7 @@ module.exports = function (passport) {
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+        // proxy: true,
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
@@ -80,6 +82,7 @@ module.exports = function (passport) {
         consumerKey: process.env.TWITTER_CLIENT_ID,
         consumerSecret: process.env.TWITTER_CLIENT_SECRET,
         callbackURL: process.env.TWITTER_CALLBACK_URL,
+        // proxy: true,
       },
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {

@@ -13,6 +13,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
   firstName: {
     type: String,
   },
@@ -23,6 +29,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

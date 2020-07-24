@@ -12,6 +12,18 @@ const polygonSchema = new mongoose.Schema({
   },
 });
 
+const lineStringSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["LineString"],
+    required: true,
+  },
+  coordinates: {
+    type: [[[Number]]], // Array of arrays of arrays of numbers
+    required: true,
+  },
+});
+
 const restrictionsSchema = new mongoose.Schema({
   permitZone: {
     type: String,
@@ -58,6 +70,7 @@ const StreetSchema = new mongoose.Schema({
   },
   //The street segment area
   polygon: polygonSchema,
+  line: lineStringSchema,
   //An object of the parking restrictions information
   restrictions: {
     type: restrictionsSchema,

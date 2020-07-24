@@ -5,7 +5,7 @@ const router = express.Router();
 //If user already logged in, redirect to API home
 router.get("/*", (req, res, next) => {
   if (req.user) {
-    res.redirect(process.env.API_BASE);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
   } else {
     next();
   }
@@ -22,7 +22,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.API_BASE);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
   }
 );
 
@@ -33,7 +33,7 @@ router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.API_BASE);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
   }
 );
 
@@ -44,7 +44,7 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.API_BASE);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
   }
 );
 

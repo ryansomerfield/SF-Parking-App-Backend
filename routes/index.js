@@ -12,6 +12,11 @@ router.get("/*", (req, res, next) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect(`${process.env.CORS_ORIGIN}`);
+});
+
 router.get("/", (req, res) => {
   res.render("home");
 });
@@ -19,6 +24,13 @@ router.get("/", (req, res) => {
 //Users
 router.get("/allusers", async (req, res) => {
   let data = await User.find({});
+  res.json(data);
+});
+
+router.get("/user/me", async (req, res) => {
+  let data = await User.find({
+    _id: req.user._id,
+  });
   res.json(data);
 });
 
