@@ -22,7 +22,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/`);
   }
 );
 
@@ -33,7 +33,7 @@ router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/`);
   }
 );
 
@@ -44,7 +44,7 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect(process.env.CORS_ORIGIN + `/auth/${req.user._id}`);
+    res.redirect(process.env.CORS_ORIGIN + `/auth/`);
   }
 );
 

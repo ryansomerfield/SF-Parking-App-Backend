@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const CarSchema = require("../models/Car");
 
 const UserSchema = new mongoose.Schema({
   loginMethod: {
@@ -7,6 +8,10 @@ const UserSchema = new mongoose.Schema({
   },
   profileId: {
     type: String,
+    required: true,
+  },
+  admin: {
+    type: Boolean,
     required: true,
   },
   displayName: {
@@ -27,6 +32,9 @@ const UserSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+  },
+  cars: {
+    type: CarSchema,
   },
   createdAt: {
     type: Date,

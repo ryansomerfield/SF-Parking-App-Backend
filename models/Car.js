@@ -15,11 +15,15 @@ const pointSchema = new mongoose.Schema({
 const CarSchema = new mongoose.Schema({
   //Name of the Street Segment
   owner: {
-    type: ObjectId,
+    type: mongoose.ObjectId,
     ref: "User",
     required: true,
   },
   nickname: {
+    type: String,
+    required: true,
+  },
+  carType: {
     type: String,
     required: true,
   },
@@ -50,7 +54,7 @@ const CarSchema = new mongoose.Schema({
   //The street segment area
   location: pointSchema,
   street: {
-    type: ObjectId,
+    type: mongoose.ObjectId,
     ref: "Street",
   },
   createdAt: {
@@ -62,5 +66,7 @@ const CarSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
-module.exports = mongoose.model("Car", CarSchema);
+module.exports = {
+  Car: mongoose.model("Car", CarSchema),
+  CarSchema: CarSchema,
+};

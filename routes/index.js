@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/User");
+const { Car } = require("../models/Car");
 const Street = require("../models/Street");
 const router = express.Router();
 
@@ -86,18 +87,91 @@ router.get("/car/:id", async (req, res) => {
 });
 
 router.post("/car", async (req, res, next) => {
-  let newCar = new Car(req.body);
+  let newCar = new Car({ ...req.body, owner: req.user._id });
   try {
     let car = await Car.findOne({
-      owner: newCar.owner,
+      owner: req.user._id,
       nickname: newCar.nickname,
     });
     if (car) {
       res.json(car);
     } else {
-      car = await car.create(newCar);
+      car = await Car.create(newCar);
+      const owner = await User.findByIdAndUpdate(req.user._id, {
+        cars: [...req.user.cars, car],
+      });
       res.json(car);
     }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+router.patch("/car/:id", async (req, res) => {
+  try {
+    const updatedOwner = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $set: {
+          updatedAt: Date.now(),
+          cars: (() => {
+            carsArray = [];
+            req.user.cars.forEach((element) => {
+              if (req.params.id == element._id) {
+                carsArray.push({ ...element, ...req.body });
+              } else {
+                carsArray.push(element);
+              }
+            });
+            return carsArray;
+          })(),
+        },
+      },
+      { new: true }
+    );
+
+    const updatedCar = await Car.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        owner: req.user._id,
+      },
+      { $set: { ...req.body, updatedAt: Date.now() } },
+      { new: true }
+    );
+
+    res.json(updatedCar);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+router.delete("/car/:id", async (req, res) => {
+  try {
+    const updatedOwner = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $set: {
+          updatedAt: Date.now(),
+          cars: (() => {
+            carsArray = [];
+            req.user.cars.forEach((element) => {
+              if (req.params.id != element._id) {
+                carsArray.push(element);
+              }
+            });
+            return carsArray;
+          })(),
+        },
+      },
+      { new: true }
+    );
+
+    const updatedCar = await Car.findOneAndRemove({
+      _id: req.params.id,
+      owner: req.user._id,
+    });
+
+    res.json(updatedCar);
   } catch (err) {
     console.error(err);
   }
